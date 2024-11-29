@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+<div class="row"> <!--fila en editar-->
+    <div class="col-md-4 offset-md-4">
+        <h2>Editar Producto</h2>
+
+        <!--Aqui codigo tarjeta-->
+        <div class="card"> <!--la tarjeta-->
+            <div class="card-body">
+                <form action="/editarProducto/" method="POST"> {% csrf_token %} <!--falta accion-->
+
+                    <div class="form-growup">
+                        <input type="text" id="numid_producto" class="form-control" name="numid_producto" value="{{misproductos.id_producto}}" minlength="1" maxlength="6" required>
+                    </div>
+
+                    <div class="form-growup py-3">
+                        <input type="text" id="txtnombre" class="form-control" name="txtnombre" value="{{misproductos.nombre}}" maxlength="100" required>
+                    </div>
+
+                    <div class="form-growup py-3">
+                        <input type="text" id="txtprecio" class="form-control" name="txtprecio" value="{{misproductos.precio}}" maxlength="100" required>
+                    </div>
+
+                    <div class="form-growup py-3">
+                        <input type="text" id="txtacantidad" class="form-control" name="txtacantidad" value="{{misproductos.cantidad}}" maxlength="100" required>
+                    </div>
+
+                    <div class="form-growup py-3">
+                        <input type="text" id="txtaid_ingrediente" class="form-control" name="txtaid_ingrediente" value="{{misproductos.id_ingrediente}}" maxlength="100" required>
+                    </div>
+
+                    <div class="form-growup py-3">
+                        <input type="text" id="txtid_sucursal" class="form-control" name="txtid_sucursal" value="{{misproductos.id_sucursal}}" maxlength="100" required>
+                    </div>
+
+                    <div class="form-growup py-2">
+                        <input type="text" id="numId_categoria" class="form-control" name="numId_categoria" value="{{misproductos.Id_categoria}}" min="1" max="9" required>
+                    </div>
+
+
+                    <div class="form-growup py-1">
+                        <button type="submit" class="btn btn-dark">Guardar Producto</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!--Aqui codigo tarjeta-->
+    </div>
+</div> <!--fila en editar-->
+
+
+{% endblock %}

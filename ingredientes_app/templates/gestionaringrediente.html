@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+
+{% load static %}
+<div class="row"> <!--la fila-->
+    <div class="col sm-12 col-md-4 col-lg-4 col-xl-4"> <!--Columna izquierda--> 
+        <h1>Ingredientes</h1>
+        <div class="card"> <!--la tarjeta-->
+            <div class="card-body">
+                <form action="registrarIngrediente/" method="POST"> {% csrf_token %} <!--falta accion-->
+                    <div class="form-growup">
+                        <input type="text" id="numid_ingrediente" class="form-control" name="numid_ingrediente" placeholder="id_ingrediente" minlength="1" maxlength="6" required>
+                    </div>
+
+                    <div class="form-growup py-3">
+                        <input type="text" id="txtid_provedor" class="form-control" name="txtid_provedor" placeholder="id_provedor" maxlength="100" required>
+                    </div>
+
+                    <div class="form-growup py-3">
+                        <input type="text" id="txtid_producto" class="form-control" name="txtid_producto" placeholder="id_producto" maxlength="100" required>
+                    </div>
+
+                    <div class="form-growup py-3">
+                        <input type="text" id="txttipo_carne" class="form-control" name="txttipo_carne" placeholder="tipo de carne" maxlength="100" required>
+                    </div>
+
+                    <div class="form-growup py-3">
+                        <input type="text" id="txtid_categoria" class="form-control" name="txtid_categoria" placeholder="id_categoria" maxlength="100" required>
+                    </div>
+                    <div class="form-growup py-1">
+                        <button type="submit" class="btn btn-dark">Guardar ingrediente</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div> <!--Columna izquierda--> 
+
+<div class="col"> <!--Columna derecha-->
+    <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8">
+        <h1>Listado de ingrediente</h1>
+        <img class="w-50" src="{% static "img/ingredientes.jpg" %}" alt="">
+        <!--la tabla-->
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">id_ingrediente</th>
+                    <th scope="col">id_provedor</th>
+                    <th scope="col">id_producto</th>
+                    <th scope="col">tipo de carne</th>
+                    <th scope="col">id_categoria</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            {% for m in misingrediente %}
+            
+            <tr>
+                <td> {{m.id_ingrediente}} </td>
+                <td> {{m.id_provedor}} </td>
+                <td> {{m.id_producto}} </td>
+                <td> {{m.tipo_carne}} </td>
+                <td> {{m.id_categoria}} </td>
+                <td> <a href="seleccionarIngrediente/{{m.id_ingrediente}}" class="btn btn-info" >Editar</a></td>  <!--falta-->
+                <td> <a href="borrarIngrediente/{{m.id_ingrediente}}" class="btn btn-danger">Borrar</a></td> <!--falta-->
+            </tr>    
+            
+            {% endfor %}
+
+        </tbody>
+        </table>
+
+    </div>
+
+</div> <!--Columna derecha-->
+
+</div> <!--la fila-->
+{% endblock %}

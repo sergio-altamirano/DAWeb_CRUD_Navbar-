@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+
+{% load static %}
+<div class="row"> <!--la fila-->
+
+    <div class="col sm-12 col-md-4 col-lg-4 col-xl-4"> <!--Columna izquierda--> 
+        <h1>productos</h1>
+        <div class="card"> <!--la tarjeta-->
+            <div class="card-body">
+                <form action="registrarProducto/" method="POST"> {% csrf_token %} <!--falta accion-->
+                    <div class="form-growup">
+                        <input type="text" id="numid_producto" class="form-control" name="numid_producto" placeholder="id" minlength="1" maxlength="6" required>
+                    </div>
+
+                    <div class="form-growup py-3">
+                        <input type="text" id="txtnombre" class="form-control" name="txtnombre" placeholder="nombre" maxlength="100" required>
+                    </div>
+
+                    <div class="form-growup py-3">
+                        <input type="text" id="txtprecio" class="form-control" name="txtprecio" placeholder="precio" maxlength="100" required>
+                    </div>
+
+                    <div class="form-growup py-3">
+                        <input type="text" id="txtacantidad" class="form-control" name="txtacantidad" placeholder="cantidad" maxlength="100" required>
+                    </div>
+
+                    <div class="form-growup py-3">
+                        <input type="text" id="txtaid_ingrediente" class="form-control" name="txtaid_ingrediente" placeholder="id ingrediente" maxlength="100" required>
+                    </div>
+
+                    <div class="form-growup py-3">
+                        <input type="text" id="txtid_sucursal" class="form-control" name="txtid_sucursal" placeholder="id sucursal" maxlength="100" required>
+                    </div>
+
+                    <div class="form-growup py-2">
+                        <input type="text" id="numId_categoria" class="form-control" name="numId_categoria" placeholder="categoria" min="1" max="9" required>
+                    </div>
+
+                    <div class="form-growup py-1">
+                        <button type="submit" class="btn btn-dark">Guardar productos</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div> <!--Columna izquierda--> 
+
+<div class="col"> <!--Columna derecha-->
+    <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8">
+        <h1>Listado de productos</h1>
+        <img class="w-50" src="{% static "img/productos.jpg" %}" alt="">
+        <!--la tabla-->
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">id_producto</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">precio</th>
+                    <th scope="col">cantidad</th>
+                    <th scope="col">Ingrediente</th>
+                    <th scope="col">sucursal</th>
+                    <th scope="col">categoria</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            {% for m in misproductos %}
+            
+            <tr>
+                <td> {{m.id_producto}} </td>
+                <td> {{m.nombre}} </td>
+                <td> {{m.precio}} </td>
+                <td> {{m.cantidad}} </td>
+                <td> {{m.id_ingrediente}} </td>
+                <td> {{m.id_sucursal}} </td>
+                <td> {{m.Id_categoria}} </td>
+                <td> <a href="seleccionarProducto/{{m.id_producto}}" class="btn btn-info" >Editar</a></td>  <!--falta-->
+                <td> <a href="borrarProduccto/{{m.id_producto}}" class="btn btn-danger">Borrar</a></td> <!--falta-->
+            </tr>    
+            
+            {% endfor %}
+
+        </tbody>
+        </table>
+
+    </div>
+
+</div> <!--Columna derecha-->
+
+</div> <!--la fila-->
+{% endblock %}

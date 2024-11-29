@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+<div class="row"> <!--fila en editar-->
+    <div class="col-md-4 offset-md-4">
+        <h2>Editar cliente</h2>
+
+        <!--Aqui codigo tarjeta-->
+        <div class="card"> <!--la tarjeta-->
+            <div class="card-body">
+                <form action="/editarCliente/" method="POST"> {% csrf_token %} <!--falta accion--> 
+
+                    <div class="form-growup">
+                        <input type="text" id="numid_cliente" class="form-control" name="numid_cliente" value="{{misclientes.id_cliente}}" minlength="1" maxlength="6" required>
+                    </div>
+
+                    <div class="form-growup py-3">
+                        <input type="text" id="txtnombre" class="form-control" name="txtnombre" value="{{misclientes.nombre}}" maxlength="100" required>
+                    </div>
+
+                    <div class="form-growup py-3">
+                        <input type="text" id="txtapellido" class="form-control" name="txtapellido" value="{{misclientes.apellido}}" maxlength="100" required>
+                    </div>
+
+                    <div class="form-growup py-3">
+                        <input type="text" id="txttelefono" class="form-control" name="txttelefono" value="{{misclientes.telefono}}" maxlength="100" required>
+                    </div>
+
+                    <div class="form-growup py-3">
+                        <input type="date" id="txtfecha_nac" class="form-control" name="txtfecha_nac" value="{{misclientes.fecha_nac}}" maxlength="100" required>
+                    </div>
+
+                    <div class="form-growup py-3">
+                        <input type="text" id="txtdomicilio" class="form-control" name="txtdomicilio" value="{{misclientes.domicilio}}" maxlength="100" required>
+                    </div>
+
+                    <div class="form-growup py-2">
+                        <input type="text" id="numcurp" class="form-control" name="numcurp" value="{{misclientes.curp}}" min="1" max="9" required>
+                    </div>
+
+
+                    <div class="form-growup py-1">
+                        <button type="submit" class="btn btn-dark">Guardar cliente</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!--Aqui codigo tarjeta-->
+    </div>
+</div> <!--fila en editar-->
+
+
+{% endblock %}

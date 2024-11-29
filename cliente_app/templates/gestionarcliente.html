@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+
+{% load static %}
+<div class="row"> <!--la fila-->
+
+    <div class="col sm-12 col-md-4 col-lg-4 col-xl-4"> <!--Columna izquierda--> 
+        <h1>clientes</h1>
+        <div class="card"> <!--la tarjeta-->
+            <div class="card-body">
+                <form action="registrarCliente/" method="POST"> {% csrf_token %} <!--falta accion-->
+                    <div class="form-growup">
+                        <input type="text" id="numid_cliente" class="form-control" name="numid_cliente" placeholder="id" minlength="1" maxlength="6" required>
+                    </div> 
+
+                    <div class="form-growup py-3">
+                        <input type="text" id="txtnombre" class="form-control" name="txtnombre" placeholder="nombre" maxlength="100" required>
+                    </div>
+
+                    <div class="form-growup py-3">
+                        <input type="text" id="txtapellido" class="form-control" name="txtapellido" placeholder="apellido" maxlength="100" required>
+                    </div>
+
+                    <div class="form-growup py-3">
+                        <input type="text" id="txttelefono" class="form-control" name="txttelefono" placeholder="telefono" maxlength="100" required>
+                    </div>
+
+                    <div class="form-growup py-3">
+                        <input type="date" id="txtfecha_nac" class="form-control" name="txtfecha_nac" placeholder="fecha de nacimiento" maxlength="100" required>
+                    </div>
+
+                    <div class="form-growup py-3">
+                        <input type="text" id="txtdomicilio" class="form-control" name="txtdomicilio" placeholder="domicilio" maxlength="100" required>
+                    </div>
+
+                    <div class="form-growup py-2">
+                        <input type="text" id="numcurp" class="form-control" name="numcurp" placeholder="curp" min="1" max="9" required>
+                    </div>
+
+                    <div class="form-growup py-1">
+                        <button type="submit" class="btn btn-dark">Guardar clientes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div> <!--Columna izquierda--> 
+
+<div class="col"> <!--Columna derecha-->
+    <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8">
+        <h1>Listado de clientes</h1>
+        <img class="w-50" src="{% static "img/cliente.jpg" %}" alt="">
+        <!--la tabla-->
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">id_cliente</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">apellido</th>
+                    <th scope="col">telefono</th>
+                    <th scope="col">fecha nac</th>
+                    <th scope="col">domicilio</th>
+                    <th scope="col">curp</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            {% for m in misclientes %}
+            
+            <tr>
+                <td> {{m.id_cliente}} </td>
+                <td> {{m.nombre}} </td>
+                <td> {{m.apellido}} </td>
+                <td> {{m.telefono}} </td>
+                <td> {{m.fecha_nac}} </td>
+                <td> {{m.domicilio}} </td>
+                <td> {{m.curp}} </td>
+                <td> <a href="seleccionarCliente/{{m.id_cliente}}" class="btn btn-info" >Editar</a></td>  <!--falta-->
+                <td> <a href="borrarCliente/{{m.id_cliente}}" class="btn btn-danger">Borrar</a></td> <!--falta-->
+            </tr>    
+            
+            {% endfor %}
+
+        </tbody>
+        </table>
+
+    </div>
+
+</div> <!--Columna derecha-->
+
+</div> <!--la fila-->
+{% endblock %}
