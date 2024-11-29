@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+<div class="row"> <!--fila en editar-->
+    <div class="col-md-4 offset-md-4">
+        <h2>Editar Provedor</h2>
+
+        <!--Aqui codigo tarjeta-->
+        <div class="card"> <!--la tarjeta-->
+            <div class="card-body">
+                <form action="/editarProvedor/" method="POST"> {% csrf_token %} <!--falta accion-->
+
+                    <div class="form-growup">
+                        <input type="text" id="numid_provedor" class="form-control" name="numid_provedor" value="{{misprovedor.id_provedor}}" minlength="1" maxlength="6" required>
+                    </div>
+
+                    <div class="form-growup py-3">
+                        <input type="text" id="txtnombre" class="form-control" name="txtnombre" value="{{misprovedor.nombre}}" maxlength="100" required>
+                    </div>
+
+                    <div class="form-growup py-3">
+                        <input type="text" id="txtdireccion" class="form-control" name="txtdireccion" value="{{misprovedor.direccion}}" maxlength="100" required>
+                    </div>
+
+                    <div class="form-growup py-3">
+                        <input type="text" id="txttelefono" class="form-control" name="txttelefono" value="{{misprovedor.telefono}}" maxlength="100" required>
+                    </div>
+
+                    <div class="form-growup py-3">
+                        <input type="text" id="txtcorreo" class="form-control" name="txtcorreo" value="{{misprovedor.correo}}" maxlength="100" required>
+                    </div>
+
+                    <div class="form-growup py-3">
+                        <input type="text" id="txttipo_entrega" class="form-control" name="txttipo_entrega" value="{{misprovedor.tipo_entrega}}" maxlength="100" required>
+                    </div>
+
+                    <div class="form-growup py-2">
+                        <input type="date" id="txtdia_entrega" class="form-control" name="txtdia_entrega" value="{{misprovedor.dia_entrega}}" min="1" max="9" required>
+                    </div>
+
+
+                    <div class="form-growup py-1">
+                        <button type="submit" class="btn btn-dark">Guardar provedor</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!--Aqui codigo tarjeta-->
+    </div>
+</div> <!--fila en editar-->
+
+
+{% endblock %}

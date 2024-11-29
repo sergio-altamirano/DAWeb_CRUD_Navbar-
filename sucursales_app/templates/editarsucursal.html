@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+<div class="row"> <!--fila en editar-->
+    <div class="col-md-4 offset-md-4">
+        <h2>Editar sucursal</h2>
+
+        <!--Aqui codigo tarjeta-->
+        <div class="card"> <!--la tarjeta-->
+            <div class="card-body">
+                <form action="/editarSucursal/" method="POST"> {% csrf_token %} <!--falta accion-->
+
+                    <div class="form-growup">
+                        <input type="text" id="numid_sucursal" class="form-control" name="numid_sucursal" value="{{missucursal.id_sucursal}}" minlength="1" maxlength="6" required>
+                    </div>
+
+                    <div class="form-growup py-3">
+                        <input type="text" id="txthorario" class="form-control" name="txthorario" value="{{missucursal.horario}}" maxlength="100" required>
+                    </div>
+
+                    <div class="form-growup py-3">
+                        <input type="text" id="txtnum_trabajadores" class="form-control" name="txtnum_trabajadores" value="{{missucursal.num_trabajadores}}" maxlength="100" required>
+                    </div>
+
+                    <div class="form-growup py-3">
+                        <input type="text" id="txtdireccion" class="form-control" name="txtdireccion" value="{{missucursal.direccion}}" maxlength="100" required>
+                    </div>
+
+                    <div class="form-growup py-3">
+                        <input type="text" id="txttelefono" class="form-control" name="txttelefono" value="{{missucursal.telefono}}" maxlength="100" required>
+                    </div>
+
+                    <div class="form-growup py-3">
+                        <input type="text" id="txtid_ventas" class="form-control" name="txtid_ventas" value="{{missucursal.id_ventas}}" maxlength="100" required>
+                    </div>
+
+                    <div class="form-growup py-3">
+                        <input type="text" id="txtcorreo" class="form-control" name="txtcorreo" value="{{missucursal.correo}}" maxlength="100" required>
+                    </div>
+
+                    <div class="form-growup py-1">
+                        <button type="submit" class="btn btn-dark">Guardar sucursal</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!--Aqui codigo tarjeta-->
+    </div>
+</div> <!--fila en editar-->
+
+
+{% endblock %}

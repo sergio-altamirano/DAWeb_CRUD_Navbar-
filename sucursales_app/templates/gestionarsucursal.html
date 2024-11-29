@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+
+{% load static %}
+<div class="row"> <!--la fila-->
+    <div class="col sm-12 col-md-4 col-lg-4 col-xl-4"> <!--Columna izquierda--> 
+        <h1>sucursales</h1>
+        <div class="card"> <!--la tarjeta-->
+            <div class="card-body">
+                <form action="registrarsucursal/" method="POST"> {% csrf_token %} <!--falta accion-->
+                    <div class="form-growup">
+                        <input type="text" id="numid_sucursal" class="form-control" name="numid_sucursal" placeholder="id_sucursal" minlength="1" maxlength="6" required>
+                    </div>
+
+                    <div class="form-growup py-3">
+                        <input type="text" id="txthorario" class="form-control" name="txthorario" placeholder="horario" maxlength="100" required>
+                    </div>
+
+                    <div class="form-growup py-3">
+                        <input type="text" id="txtnum_trabajadores" class="form-control" name="txtnum_trabajadores" placeholder="numero de trabajadores" maxlength="100" required>
+                    </div>
+
+                    <div class="form-growup py-3">
+                        <input type="text" id="txtdireccion" class="form-control" name="txtdireccion" placeholder="direccion" maxlength="100" required>
+                    </div>
+
+                    <div class="form-growup py-3">
+                        <input type="text" id="txttelefono" class="form-control" name="txttelefono" placeholder="telefono" maxlength="100" required>
+                    </div>
+
+                    <div class="form-growup py-3">
+                        <input type="text" id="txtid_ventas" class="form-control" name="txtid_ventas" placeholder="id_ventas" maxlength="100" required>
+                    </div>
+
+                    <div class="form-growup py-3">
+                        <input type="text" id="txtcorreo" class="form-control" name="txtcorreo" placeholder="correo" maxlength="100" required>
+                    </div>
+
+                    <div class="form-growup py-1">
+                        <button type="submit" class="btn btn-dark">Guardar sucursal</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div> <!--Columna izquierda--> 
+
+<div class="col"> <!--Columna derecha-->
+    <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8">
+        <h1>Listado de sucursal</h1>
+        <img class="w-50" src="{% static "img/sucursal.jpg" %}" alt="">
+        <!--la tabla-->
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">id_sucursal</th>
+                    <th scope="col">horario</th>
+                    <th scope="col">numero de trabajadores</th>
+                    <th scope="col">direccion</th>
+                    <th scope="col">telefono</th>
+                    <th scope="col">id_ventas</th>
+                    <th scope="col">correo</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            {% for m in missucursal %}
+            
+            <tr>
+                <td> {{m.id_sucursal}} </td>
+                <td> {{m.horario}} </td>
+                <td> {{m.num_trabajadores}} </td>
+                <td> {{m.direccion}} </td>
+                <td> {{m.telefono}} </td>
+                <td> {{m.id_ventas}} </td>
+                <td> {{m.correo}} </td>
+                <td> <a href="seleccionarSucursal/{{m.id_sucursal}}" class="btn btn-info" >Editar</a></td>  <!--falta-->
+                <td> <a href="borrarSucursal/{{m.id_sucursal}}" class="btn btn-danger">Borrar</a></td> <!--falta-->
+            </tr>    
+            
+            {% endfor %}
+
+        </tbody>
+        </table>
+
+    </div>
+
+</div> <!--Columna derecha-->
+
+</div> <!--la fila-->
+{% endblock %}
